@@ -1,0 +1,25 @@
+service: tf-wallet-transaction-history-service
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+  environment: ${file(env.yml):${opt:stage}}
+
+functions:
+  userTransactions:
+    handler: handler.api
+    events:
+      - http: 'POST /user/txs'
+  userCustomTransactions:
+    handler: handler.api
+    events:
+      - http: 'POST /user/custom/txs'
+  storeHash:
+    handler: handler.api
+    events:
+      - http: 'POST /hash'
+
+plugins:
+  - serverless-offline

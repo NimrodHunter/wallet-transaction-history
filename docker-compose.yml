@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  db_dev:
+    image: postgres:10.4-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=custody
+      - POSTGRES_PASSWORD=supersecret
